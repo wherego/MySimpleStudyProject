@@ -1,4 +1,4 @@
-package com.bianl.readingwhat.ui.activity.home;
+package com.bianl.readingwhat.ui.activity.movie.movielist;
 
 import com.bianl.readingwhat.base.BaseView;
 import com.bianl.readingwhat.bean.MovieBaseList;
@@ -8,10 +8,7 @@ import com.bianl.readingwhat.bean.MovieBaseList;
  *
  * @mail:fhbianling@163.com
  */
-public interface HomeViewModel extends BaseView{
+public interface MovieListView extends BaseView{
     void showListData( MovieBaseList lists);
-    void showError(String message);
-    void showLoading();
-    void endLoading();
     void clear();
 }

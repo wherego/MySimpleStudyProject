@@ -1,9 +1,11 @@
 package com.bianl.readingwhat.net;
 
 import com.bianl.readingwhat.bean.MovieBaseList;
+import com.bianl.readingwhat.bean.movie.MovieSubject;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import rx.Observable;
 
 /**
@@ -22,4 +24,7 @@ public interface request {
 
     @GET("v2/movie/us_box")
     Observable<MovieBaseList> getMovieUsBox();
+
+    @GET("v2/movie/subject/{movieSubjectId}")
+    Observable<MovieSubject> getMovieDetail(@Path("movieSubjectId") String movieSubjectId);
 }

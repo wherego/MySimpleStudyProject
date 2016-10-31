@@ -1,9 +1,8 @@
-package com.bianl.readingwhat.ui.activity.home;
+package com.bianl.readingwhat.ui.activity.movie.movielist;
 
 import com.bianl.readingwhat.base.BasePrensenter;
 import com.bianl.readingwhat.bean.MovieBaseList;
 import com.bianl.readingwhat.rx.AppRxSchedulers;
-import com.bianl.readingwhat.util.L;
 
 import java.util.HashMap;
 
@@ -11,16 +10,16 @@ import rx.Observable;
 import rx.functions.Action0;
 import rx.functions.Action1;
 
-import static com.bianl.readingwhat.ui.activity.home.HomeAty.TAG_COMING_SOON;
-import static com.bianl.readingwhat.ui.activity.home.HomeAty.TAG_IN_THEATERS;
-import static com.bianl.readingwhat.ui.activity.home.HomeAty.TAG_US_BOX;
+import static com.bianl.readingwhat.ui.activity.movie.movielist.MovieListAty.TAG_COMING_SOON;
+import static com.bianl.readingwhat.ui.activity.movie.movielist.MovieListAty.TAG_IN_THEATERS;
+import static com.bianl.readingwhat.ui.activity.movie.movielist.MovieListAty.TAG_US_BOX;
 
 /**
  * Created by fhbianling on 2016/10/30.
  *
  * @mail:fhbianling@163.com
  */
-public class HomePrensent extends BasePrensenter<HomeModel, HomeAty> {
+public class MovieListPrensent extends BasePrensenter<MovieListModel, MovieListAty> {
     private HashMap<Integer, MovieBaseList> cache = new HashMap<>();
 
     void switchPresentData(final int position) {
@@ -65,7 +64,7 @@ public class HomePrensent extends BasePrensenter<HomeModel, HomeAty> {
             }, new Action1<Throwable>() {
                 @Override
                 public void call(Throwable throwable) {
-                    mView.showError(throwable.getMessage());
+                    mView.showErrorMessage(throwable.getMessage());
                     mView.endLoading();
                     mView.clear();
                 }

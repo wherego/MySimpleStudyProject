@@ -18,7 +18,10 @@ import butterknife.ButterKnife;
  *
  * @mail:fhbianling@163.com
  */
-public abstract class BaseActivity<P extends BasePrensenter, M extends BaseModel> extends AppCompatActivity implements DialogInterface.OnCancelListener {
+public abstract class BaseActivity<P extends BasePrensenter, M extends BaseModel> extends AppCompatActivity implements DialogInterface.OnCancelListener,BaseView {
+    protected final static String START_INT1="STR_INT1";
+    protected final static String START_STRING="STR_STR";
+
     protected M mModel;
     protected P mPrensenter;
 
@@ -35,7 +38,7 @@ public abstract class BaseActivity<P extends BasePrensenter, M extends BaseModel
         ButterKnife.bind(this);
         mPrensenter = TypeUtil.getT(this, 0);
         mModel = TypeUtil.getT(this, 1);
-        if (this instanceof BaseView) {
+        if (mModel != null) {
             mPrensenter.setMv(mModel, this);
         }
         initView();
@@ -70,5 +73,20 @@ public abstract class BaseActivity<P extends BasePrensenter, M extends BaseModel
     protected void onDestroy() {
         hideProgress();
         super.onDestroy();
+    }
+
+    @Override
+    public void showLoading() {
+        showProgressDialog("DataLoading");
+    }
+
+    @Override
+    public void endLoading() {
+        hideProgress();
+    }
+
+    @Override
+    public void showErrorMessage(String message) {
+        showMsg(message);
     }
 }

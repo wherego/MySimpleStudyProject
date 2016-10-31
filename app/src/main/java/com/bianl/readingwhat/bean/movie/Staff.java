@@ -22,6 +22,15 @@ public class Staff {
     private String name;
     private String id;
     private Images images;
+    private Images avatars;
+
+    public Images getAvatars() {
+        return avatars;
+    }
+
+    public void setAvatars(Images avatars) {
+        this.avatars = avatars;
+    }
 
     public Images getImages() {
         return images;

@@ -14,7 +14,5 @@ public abstract class BasePrensenter<M, V> {
         this.mView = v;
         onStart();
     }
-
-    protected void viewControl(){}
     protected void onStart(){}
 }

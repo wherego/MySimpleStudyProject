@@ -6,4 +6,7 @@ package com.bianl.readingwhat.base;
  * @mail:fhbianling@163.com
  */
 public interface BaseView {
+    void showLoading();
+    void endLoading();
+    void showErrorMessage(String message);
 }

@@ -1,4 +1,4 @@
-package com.bianl.readingwhat.ui.activity.home;
+package com.bianl.readingwhat.ui.activity.movie.movielist;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -10,13 +10,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.bianl.readingwhat.R;
-import com.bianl.readingwhat.adapter.home.HomeListAdapter;
+import com.bianl.readingwhat.adapter.movie.MovieListAdapter;
 import com.bianl.readingwhat.base.BaseActivity;
 import com.bianl.readingwhat.bean.MovieBaseList;
 import com.bianl.readingwhat.bean.movie.MovieSubject;
+import com.bianl.readingwhat.ui.activity.movie.moviedetail.MovieDetailAty;
 import com.bianl.readingwhat.ui.activity.setting.AppInfoListAty;
 import com.bianl.readingwhat.util.L;
 
@@ -29,7 +32,7 @@ import butterknife.BindView;
  *
  * @mail:fhbianling@163.com
  */
-public class HomeAty extends BaseActivity<HomePrensent, HomeModel> implements Toolbar.OnMenuItemClickListener, HomeViewModel, TabLayout.OnTabSelectedListener {
+public class MovieListAty extends BaseActivity<MovieListPrensent, MovieListModel> implements Toolbar.OnMenuItemClickListener, MovieListView, TabLayout.OnTabSelectedListener, AdapterView.OnItemClickListener {
 
     public final static int TAG_IN_THEATERS = 0;
     public final static int TAG_COMING_SOON = 1;
@@ -37,7 +40,7 @@ public class HomeAty extends BaseActivity<HomePrensent, HomeModel> implements To
 
     @Override
     protected int bindLayoutId() {
-        return R.layout.activity_home;
+        return R.layout.activity_movie_list;
     }
 
 
@@ -47,7 +50,7 @@ public class HomeAty extends BaseActivity<HomePrensent, HomeModel> implements To
     ListView mList;
     @BindView(R.id.home_tabLayout)
     TabLayout mTab;
-    private HomeListAdapter adapter;
+    private MovieListAdapter adapter;
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -61,7 +64,7 @@ public class HomeAty extends BaseActivity<HomePrensent, HomeModel> implements To
     private void toolBarSetting() {
         toolbar.setTitle("ReadingWhat");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            toolbar.setBackground(new ColorDrawable(getResources().getColor(R.color.colorAccent)));
+            toolbar.setBackground(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
         }
         toolbar.setSubtitle("a study demo");
         setSupportActionBar(toolbar);
@@ -75,8 +78,8 @@ public class HomeAty extends BaseActivity<HomePrensent, HomeModel> implements To
         return true;
     }
 
-    public static void startHomeAty(Activity activity) {
-        Intent intent = new Intent(activity, HomeAty.class);
+    public static void startMovieListAty(Activity activity) {
+        Intent intent = new Intent(activity, MovieListAty.class);
         activity.startActivity(intent);
     }
 
@@ -86,7 +89,7 @@ public class HomeAty extends BaseActivity<HomePrensent, HomeModel> implements To
         L.d("OnClick");
         if (itemId == R.id.action_openAppInfo) {
             L.d("OnClick");
-            AppInfoListAty.startAppInfoAty(HomeAty.this);
+            AppInfoListAty.startAppInfoAty(MovieListAty.this);
             return true;
         }
         return false;
@@ -99,16 +102,12 @@ public class HomeAty extends BaseActivity<HomePrensent, HomeModel> implements To
         }
         List<MovieSubject> subjects = lists.getSubjects();
         if (adapter == null) {
-            adapter = new HomeListAdapter(subjects, this);
+            adapter = new MovieListAdapter(subjects, this);
+            mList.setOnItemClickListener(this);
             mList.setAdapter(adapter);
         } else {
             adapter.resetData(subjects);
         }
-    }
-
-    @Override
-    public void showError(String message) {
-        showMsg(message);
     }
 
     @Override
@@ -139,5 +138,11 @@ public class HomeAty extends BaseActivity<HomePrensent, HomeModel> implements To
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        MovieSubject item = adapter.getItem(i);
+        MovieDetailAty.startMovieDetailAty(this,item.getId());
     }
 }

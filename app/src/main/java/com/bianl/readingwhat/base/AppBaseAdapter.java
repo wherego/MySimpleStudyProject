@@ -10,12 +10,14 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by fhbianling on 2016/10/30.
  *
  * @mail:fhbianling@163.com
  */
-public abstract class AppBaseAdapter<T> extends android.widget.BaseAdapter {
+public abstract class AppBaseAdapter<T,E extends AppBaseAdapter.BaseViewHolder> extends android.widget.BaseAdapter {
     protected Activity mActivity;
     protected LayoutInflater inflater;
     protected List<T> mData;
@@ -49,9 +51,9 @@ public abstract class AppBaseAdapter<T> extends android.widget.BaseAdapter {
     @LayoutRes
     int getViewId();
 
-    protected abstract @NonNull BaseViewHolder getHolder(View convertView);
+    protected abstract @NonNull E getHolder(View convertView);
 
-    protected abstract void displayData(int position,@NonNull BaseViewHolder holder, @NonNull T t);
+    protected abstract void displayData(int position,@NonNull E holder, @NonNull T t);
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
@@ -59,13 +61,13 @@ public abstract class AppBaseAdapter<T> extends android.widget.BaseAdapter {
     }
 
     public View mGetView(int i, View view, ViewGroup viewGroup) {
-        BaseViewHolder holder;
+        E holder;
         if (view == null) {
             view = inflater.inflate(getViewId(), viewGroup, false);
             holder = getHolder(view);
             view.setTag(holder);
         } else {
-            holder = (BaseViewHolder) view.getTag();
+            holder = (E) view.getTag();
         }
         T item = getItem(i);
         if(item!=null){
@@ -87,11 +89,12 @@ public abstract class AppBaseAdapter<T> extends android.widget.BaseAdapter {
         notifyDataSetChanged();
     }
 
-    protected static abstract class BaseViewHolder {
+    public static abstract class BaseViewHolder {
         protected View root;
 
         public BaseViewHolder(View root) {
             this.root = root;
+            ButterKnife.bind(this,root);
         }
     }
 }

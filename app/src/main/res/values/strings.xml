@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ReadingWhat</string>
+    <string name="u3000_u3000_s">　　%s</string>
+    <string name="collect">collect:</string>
+    <string name="wish">wish:</string>
+    <string name="review">review:</string>
+    <string name="link">WebLink</string>
 </resources>

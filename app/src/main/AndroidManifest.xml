@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bianl.readingwhat">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
         android:name=".app.WatchingWhatApp"
         android:allowBackup="true"
@@ -16,8 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.home.HomeAty"  />
+        <activity android:name=".ui.activity.movie.movielist.MovieListAty"  />
         <activity android:name=".ui.activity.setting.AppInfoListAty" />
+        <activity android:name=".ui.activity.movie.moviedetail.MovieDetailAty"/>
+        <activity android:name=".ui.activity.web.WebtvActivity"/>
     </application>
 
 </manifest>

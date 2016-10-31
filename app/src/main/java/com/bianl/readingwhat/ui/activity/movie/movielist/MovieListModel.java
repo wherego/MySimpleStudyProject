@@ -1,9 +1,8 @@
-package com.bianl.readingwhat.ui.activity.home;
+package com.bianl.readingwhat.ui.activity.movie.movielist;
 
 import com.bianl.readingwhat.base.BaseModel;
 import com.bianl.readingwhat.bean.MovieBaseList;
 import com.bianl.readingwhat.net.Api;
-import com.bianl.readingwhat.rx.AppRxSchedulers;
 
 import rx.Observable;
 
@@ -12,7 +11,7 @@ import rx.Observable;
  *
  * @mail:fhbianling@163.com
  */
-public class HomeModel implements BaseModel {
+public class MovieListModel implements BaseModel {
     public Observable<MovieBaseList> getMovieInTheaters() {
         return Api.getInstance().getMovieInTheaters();
     }

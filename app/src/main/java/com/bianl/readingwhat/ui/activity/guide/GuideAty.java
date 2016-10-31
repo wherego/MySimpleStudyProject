@@ -2,8 +2,7 @@ package com.bianl.readingwhat.ui.activity.guide;
 
 import com.bianl.readingwhat.R;
 import com.bianl.readingwhat.base.BaseActivity;
-import com.bianl.readingwhat.base.BaseModel;
-import com.bianl.readingwhat.ui.activity.home.HomeAty;
+import com.bianl.readingwhat.ui.activity.movie.movielist.MovieListAty;
 
 import butterknife.OnClick;
 
@@ -14,9 +13,9 @@ public class GuideAty extends BaseActivity {
         return R.layout.activity_guide_aty;
     }
 
-    @OnClick(R.id.guide_tv)
+    @OnClick(R.id.guide_movie)
     protected void goNextPage(){
-        HomeAty.startHomeAty(this);
+        MovieListAty.startMovieListAty(this);
     }
     @Override
     protected void initView() {

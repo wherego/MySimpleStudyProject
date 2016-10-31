@@ -13,12 +13,14 @@ import com.bianl.readingwhat.base.AppBaseAdapter;
 
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
  * Created by fhbianling on 2016/10/18.
  *
  * @mail:fhbianling@163.com
  */
-public class AppInfoListAdapter extends com.bianl.readingwhat.base.AppBaseAdapter<PackageInfo> {
+public class AppInfoListAdapter extends com.bianl.readingwhat.base.AppBaseAdapter<PackageInfo,AppInfoViewHolder> {
     private PackageManager pm;
 
     public AppInfoListAdapter(List<PackageInfo> mData, Activity mActivity) {
@@ -33,12 +35,12 @@ public class AppInfoListAdapter extends com.bianl.readingwhat.base.AppBaseAdapte
 
     @NonNull
     @Override
-    protected BaseViewHolder getHolder(View convertView) {
+    protected AppInfoViewHolder getHolder(View convertView) {
         return new AppInfoViewHolder(convertView);
     }
 
     @Override
-    protected void displayData(int position, @NonNull BaseViewHolder holder, @NonNull PackageInfo packageInfo) {
+    protected void displayData(int position, @NonNull AppInfoViewHolder holder, @NonNull PackageInfo packageInfo) {
         if (holder instanceof AppInfoViewHolder) {
             ApplicationInfo applicationInfo = packageInfo.applicationInfo;
             boolean isSystemApp =
@@ -55,12 +57,12 @@ public class AppInfoListAdapter extends com.bianl.readingwhat.base.AppBaseAdapte
         }
     }
 
-    private class AppInfoViewHolder extends BaseViewHolder {
-        TextView tv;
+}
+class AppInfoViewHolder extends AppBaseAdapter.BaseViewHolder {
+    @BindView(R.id.item_appInfoList_tv)
+    TextView tv;
 
-        public AppInfoViewHolder(View root) {
-            super(root);
-            tv = (TextView) root.findViewById(R.id.item_appInfoList_tv);
-        }
+    public AppInfoViewHolder(View root) {
+        super(root);
     }
 }
