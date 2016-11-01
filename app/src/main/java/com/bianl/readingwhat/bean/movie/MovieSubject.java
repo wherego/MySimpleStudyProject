@@ -1,6 +1,7 @@
 package com.bianl.readingwhat.bean.movie;
 
 import com.bianl.readingwhat.bean.Images;
+import com.bianl.readingwhat.db.model.StaredMovie;
 
 import java.util.List;
 
@@ -306,5 +307,15 @@ public class MovieSubject {
 
     public void setCurrent_season(Object current_season) {
         this.current_season = current_season;
+    }
+
+    public StaredMovie asStaredMovie(){
+        StaredMovie movie=new StaredMovie();
+        movie.setMovieId(id);
+        if(images!=null){
+            movie.setSmallImage(images.getSmall());
+        }
+        movie.setTitle(title);
+        return movie;
     }
 }

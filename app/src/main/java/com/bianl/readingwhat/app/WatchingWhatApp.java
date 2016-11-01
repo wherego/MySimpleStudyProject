@@ -1,6 +1,7 @@
 package com.bianl.readingwhat.app;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.pm.ResolveInfo;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -14,9 +15,16 @@ import com.bianl.readingwhat.util.L;
  * @mail:fhbianling@163.com
  */
 public class WatchingWhatApp extends Application {
+
+    private static WatchingWhatApp app;
+
+    public static WatchingWhatApp getInstance(){
+        return app;
+    }
     @Override
     public void onCreate() {
         super.onCreate();
+        app=this;
         L.setDebug(true);
         L.setTag(Cnst.tag);
     }
@@ -37,4 +45,5 @@ public class WatchingWhatApp extends Application {
                 && activeNetworkInfo.isAvailable()
                 && activeNetworkInfo.getType() == ConnectivityManager.TYPE_WIFI;
     }
+
 }

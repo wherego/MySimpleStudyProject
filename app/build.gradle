@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 24
@@ -19,6 +20,11 @@ android {
         }
     }
 }
+greendao {
+    schemaVersion 1
+    daoPackage 'com.bianl.readingwhat.db.gen'
+    targetGenDir 'src/main/java'
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
@@ -37,5 +43,9 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'com.android.support:design:24.1.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    //greenDao
+    compile 'org.greenrobot:greendao:3.2.0'
+    compile 'org.greenrobot:greendao-generator:3.2.0'
 }
 
