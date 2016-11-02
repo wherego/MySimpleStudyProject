@@ -9,6 +9,11 @@
         android:title="AppInfo"
         app:showAsAction="collapseActionView" />
     <item
+        android:id="@+id/action_staredMovie"
+        android:orderInCategory="70"
+        android:title="liked"
+        app:showAsAction="collapseActionView" />
+    <item
         android:id="@+id/action_setting"
         android:orderInCategory="70"
         android:title="Setting"

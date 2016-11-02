@@ -24,28 +24,29 @@ greendao {
     schemaVersion 1
     daoPackage 'com.bianl.readingwhat.db.gen'
     targetGenDir 'src/main/java'
-}
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.1.0'
-    compile 'com.jakewharton:butterknife:8.4.0'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
-    //网络框架搭建 retrofit2+gson+okhttp+RxJava
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    //Retrofit2 support for RxJava
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-    //用于输出网络输出交互log
-    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
-    //RxJava
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxjava:1.1.6'
-    compile 'com.android.support:design:24.1.0'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-
-    //greenDao
-    compile 'org.greenrobot:greendao:3.2.0'
-    compile 'org.greenrobot:greendao-generator:3.2.0'
+    dependencies {
+        compile fileTree(include: ['*.jar'], dir: 'libs')
+        testCompile 'junit:junit:4.12'
+        compile 'com.android.support:appcompat-v7:24.1.0'
+        compile 'com.jakewharton:butterknife:8.4.0'
+        apt 'com.jakewharton:butterknife-compiler:8.4.0'
+        //网络框架搭建 retrofit2+gson+okhttp+RxJava
+        compile 'com.squareup.retrofit2:retrofit:2.1.0'
+        compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+        //Retrofit2 support for RxJava
+        compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+        //用于输出网络输出交互log
+        compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
+        //RxJava
+        compile 'io.reactivex:rxandroid:1.2.1'
+        compile 'io.reactivex:rxjava:1.1.6'
+        compile 'com.android.support:design:24.1.0'
+        compile 'com.github.bumptech.glide:glide:3.7.0'
+        //greenDao
+        compile 'org.greenrobot:greendao:3.2.0'
+        compile 'org.greenrobot:greendao-generator:3.2.0'
+        //SwipeBackLayout
+//        compile 'me.imid.swipebacklayout.lib:library:1.0.0'
+    }
 }
 

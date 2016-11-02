@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.View;
-import android.widget.GridView;
+import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +13,8 @@ import com.bianl.readingwhat.adapter.movie.StaffAdapter;
 import com.bianl.readingwhat.base.BaseActivity;
 import com.bianl.readingwhat.bean.movie.MovieSubject;
 import com.bianl.readingwhat.bean.movie.Staff;
+import com.bianl.readingwhat.db.model.StaredMovie;
+import com.bianl.readingwhat.db.util.StaredMovieUtil;
 import com.bianl.readingwhat.util.AppUtil.CommonUtil;
 import com.bianl.readingwhat.util.glide.GlideUtil;
 import com.bianl.readingwhat.view.NestedGridView;
@@ -67,11 +69,16 @@ public class MovieDetailAty extends BaseActivity<MovieDetailPresent, MovieDetail
     TextView movieDetailReview;
     @BindView(R.id.movie_detail_url)
     TextView movieDetailUrl;
+    @BindView(R.id.item_movie_star)
+    CheckedTextView star;
     private StaffAdapter directoryAdapter;
     private StaffAdapter castAdapter;
 
     @Override
     public void showMovieDetail(@NonNull MovieSubject subject) {
+        StaredMovie query = StaredMovieUtil.getInstance().query(subject);
+        star.setChecked(query!=null);
+        star.setClickable(false);
         String medium = subject.getImages().getMedium();
         GlideUtil.loadImageWithOrginScale(this, medium, itemMovieImg);
 
@@ -81,8 +88,8 @@ public class MovieDetailAty extends BaseActivity<MovieDetailPresent, MovieDetail
 
         itemMovieTitle.setText(subject.getTitle());
         itemMovieRating.setText(String.valueOf(subject.getRating().getAverage()));
-        String genricsInLine = CommonUtil.getGenricsInLine(subject.getGenres());
-        itemMovieGenres.setText(genricsInLine);
+        String genresInLine = CommonUtil.getGenresInLine(subject.getGenres());
+        itemMovieGenres.setText(genresInLine);
         movieDetailSummary.setText(String.format(getString(R.string.u3000_u3000_s), subject.getSummary()));
         List<Staff> directors = subject.getDirectors();
         List<Staff> casts = subject.getCasts();

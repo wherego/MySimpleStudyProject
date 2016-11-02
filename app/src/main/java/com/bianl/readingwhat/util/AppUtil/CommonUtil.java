@@ -13,7 +13,7 @@ public class CommonUtil {
     private CommonUtil() {
     }
 
-    public static String getGenricsInLine(List<String> genrics) {
+    public static String getGenresInLine(List<String> genrics) {
         if (genrics == null||genrics.isEmpty()) {
             return null;
         }

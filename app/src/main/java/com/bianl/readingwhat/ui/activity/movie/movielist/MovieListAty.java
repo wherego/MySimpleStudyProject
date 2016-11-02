@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -20,6 +21,7 @@ import com.bianl.readingwhat.base.BaseActivity;
 import com.bianl.readingwhat.bean.MovieBaseList;
 import com.bianl.readingwhat.bean.movie.MovieSubject;
 import com.bianl.readingwhat.ui.activity.movie.moviedetail.MovieDetailAty;
+import com.bianl.readingwhat.ui.activity.movie.moviestared.MovieLikedAty;
 import com.bianl.readingwhat.ui.activity.setting.AppInfoListAty;
 import com.bianl.readingwhat.util.L;
 
@@ -44,7 +46,7 @@ public class MovieListAty extends BaseActivity<MovieListPrensent, MovieListModel
     }
 
 
-    @BindView(R.id.home_toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.home_list)
     ListView mList;
@@ -90,6 +92,9 @@ public class MovieListAty extends BaseActivity<MovieListPrensent, MovieListModel
         if (itemId == R.id.action_openAppInfo) {
             L.d("OnClick");
             AppInfoListAty.startAppInfoAty(MovieListAty.this);
+            return true;
+        }else if(itemId==R.id.action_staredMovie){
+            MovieLikedAty.startMovieLikeAty(this);
             return true;
         }
         return false;
