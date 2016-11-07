@@ -16,4 +16,5 @@ public abstract class AbsDaoUtil {
         DaoMaster daoMaster = new DaoMaster(devOpenHelper.getWritableDatabase());
         daoSession = daoMaster.newSession();
     }
+
 }

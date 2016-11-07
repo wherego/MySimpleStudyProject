@@ -16,6 +16,8 @@ import com.bianl.readingwhat.R;
  * @mail:fhbianling@163.com
  */
 public class ToastUtil {
+    private ToastUtil() {
+    }
 
     @SuppressLint("InflateParams")
     public static void showMessage(Context context, String message,int duration){

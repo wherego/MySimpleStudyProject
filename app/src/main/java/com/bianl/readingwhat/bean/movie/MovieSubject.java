@@ -3,13 +3,20 @@ package com.bianl.readingwhat.bean.movie;
 import com.bianl.readingwhat.bean.Images;
 import com.bianl.readingwhat.db.model.StaredMovie;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Property;
+import org.greenrobot.greendao.annotation.Transient;
+
 import java.util.List;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by fhbianling on 2016/10/16.
  *
  * @mail:fhbianling@163.com
  */
+@Entity
 @SuppressWarnings("unused")
 public class MovieSubject {
 
@@ -28,17 +35,30 @@ public class MovieSubject {
      * id : 25815034
      */
 
+    @Id(autoincrement = true)
+    private long _Id;
     private String title;
+    @Transient
     private int collect_count;
+    @Transient
     private String original_title;
+    @Transient
     private String subtype;
+    @Transient
     private String year;
+    @Transient
     private String alt;
+    @Property(nameInDb = "MovieId")
     private String id;
+    @Transient
     private List<String> genres;
+    @Transient
     private Rating rating;
+    @Transient
     private List<Staff> casts;
+    @Transient
     private List<Staff> directors;
+    @Transient
     private Images images;
     /**
      * reviews_count : 294
@@ -57,17 +77,26 @@ public class MovieSubject {
      * ratings_count : 57104
      * aka : ["9：末世决战","九","Number 9","机器人9号"]
      */
-
+    @Transient
     private int reviews_count;
+    @Transient
     private int wish_count;
+    @Transient
     private String douban_site;
     private String mobile_url;
+    @Transient
     private String share_url;
+    @Transient
     private String schedule_url;
+    @Transient
     private String summary;
+    @Transient
     private int comments_count;
+    @Transient
     private int ratings_count;
+    @Transient
     private List<String> countries;
+    @Transient
     private List<String> aka;
     /**
      * do_count : null
@@ -75,11 +104,27 @@ public class MovieSubject {
      * episodes_count : null
      * current_season : null
      */
-
+    @Transient
     private Object do_count;
+    @Transient
     private Object seasons_count;
+    @Transient
     private Object episodes_count;
+    @Transient
     private Object current_season;
+
+
+    @Generated(hash = 843260702)
+    public MovieSubject(long _Id, String title, String id, String mobile_url) {
+        this._Id = _Id;
+        this.title = title;
+        this.id = id;
+        this.mobile_url = mobile_url;
+    }
+
+    @Generated(hash = 762160079)
+    public MovieSubject() {
+    }
 
 
     @Override
@@ -317,5 +362,13 @@ public class MovieSubject {
         }
         movie.setTitle(title);
         return movie;
+    }
+
+    public long get_Id() {
+        return this._Id;
+    }
+
+    public void set_Id(long _Id) {
+        this._Id = _Id;
     }
 }
