@@ -9,19 +9,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 
+import com.bianl.readingwhat.rx.AppRxSchedulers;
+import com.bianl.readingwhat.rx.RxBus;
 import com.bianl.readingwhat.util.ToastUtil;
 import com.bianl.readingwhat.util.TypeUtil;
 
 import butterknife.ButterKnife;
+import rx.Observer;
 
 /**
  * Created by fhbianling on 2016/10/16.
  *
  * @mail:fhbianling@163.com
  */
-public abstract class BaseActivity<P extends BasePrensenter, M extends BaseModel> extends AppCompatActivity implements DialogInterface.OnCancelListener,BaseView {
-    protected final static String START_INT1="STR_INT1";
-    protected final static String START_STRING="STR_STR";
+public abstract class BaseActivity<P extends BasePrensenter, M extends BaseModel> extends AppCompatActivity implements DialogInterface.OnCancelListener, BaseView {
+    protected final static String START_INT1 = "STR_INT1";
+    protected final static String START_STRING = "STR_STR";
 
     protected M mModel;
     protected P mPrensenter;
@@ -43,6 +46,26 @@ public abstract class BaseActivity<P extends BasePrensenter, M extends BaseModel
             mPrensenter.setMv(mModel, this);
         }
         initView();
+        RxBus.getInstance().toObservable().compose(AppRxSchedulers.<RxBus.RxEvent>ioMain()).subscribe(new Observer<RxBus.RxEvent>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(RxBus.RxEvent rxEvent) {
+                handleMessage(rxEvent);
+            }
+        });
+    }
+
+    protected void handleMessage(RxBus.RxEvent rxEvent) {
+
     }
 
     protected void showMsg(String message) {

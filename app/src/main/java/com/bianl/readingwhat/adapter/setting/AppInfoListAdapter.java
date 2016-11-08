@@ -41,20 +41,17 @@ public class AppInfoListAdapter extends com.bianl.readingwhat.base.AppBaseAdapte
 
     @Override
     protected void displayData(int position, @NonNull AppInfoViewHolder holder, @NonNull PackageInfo packageInfo) {
-        if (holder instanceof AppInfoViewHolder) {
-            ApplicationInfo applicationInfo = packageInfo.applicationInfo;
-            boolean isSystemApp =
-                    (applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
-            String s = String.valueOf(position) + (isSystemApp ? "SystemApp  " : "SelfInstall  ");
-            CharSequence description = applicationInfo.loadDescription(pm) == null ? "" : applicationInfo.loadDescription(pm);
-            String s1 = s +
-                    "\ndescription:\t\t" +
-                    description +
-                    "\nlabel:\t\t" + applicationInfo.loadLabel(pm) +
-                    "\npackageName:\t\t" + packageInfo.packageName + "\nversionName:\t" + packageInfo.versionName;
-
-            ((AppInfoViewHolder) holder).tv.setText(s1);
-        }
+        ApplicationInfo applicationInfo = packageInfo.applicationInfo;
+        boolean isSystemApp =
+                (applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
+        String s = String.valueOf(position) + (isSystemApp ? "SystemApp  " : "SelfInstall  ");
+        CharSequence description = applicationInfo.loadDescription(pm) == null ? "" : applicationInfo.loadDescription(pm);
+        String s1 = s +
+                "\ndescription:\t\t" +
+                description +
+                "\nlabel:\t\t" + applicationInfo.loadLabel(pm) +
+                "\npackageName:\t\t" + packageInfo.packageName + "\nversionName:\t" + packageInfo.versionName;
+        holder.tv.setText(s1);
     }
 
 }

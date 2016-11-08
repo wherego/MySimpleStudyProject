@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import com.bianl.readingwhat.adapter.movie.MovieListAdapter;
 import com.bianl.readingwhat.base.BaseActivity;
 import com.bianl.readingwhat.bean.MovieBaseList;
 import com.bianl.readingwhat.bean.movie.MovieSubject;
+import com.bianl.readingwhat.rx.RxBus;
 import com.bianl.readingwhat.ui.activity.movie.moviedetail.MovieDetailAty;
 import com.bianl.readingwhat.ui.activity.movie.moviestared.MovieLikedAty;
 import com.bianl.readingwhat.ui.activity.setting.AppInfoListAty;
@@ -149,5 +151,10 @@ public class MovieListAty extends BaseActivity<MovieListPrensent, MovieListModel
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         MovieSubject item = adapter.getItem(i);
         MovieDetailAty.startMovieDetailAty(this,item.getId());
+    }
+
+    @Override
+    protected void handleMessage(RxBus.RxEvent rxEvent) {
+        Log.d("enumTAG",rxEvent.toString());
     }
 }
