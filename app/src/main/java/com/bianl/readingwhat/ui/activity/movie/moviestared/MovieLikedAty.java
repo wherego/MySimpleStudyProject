@@ -31,7 +31,7 @@ public class MovieLikedAty extends BaseActivity<MovieLikedPrenstent, MovieLikedM
 
     @Override
     protected void initView() {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+
     }
 
     private MovieLikedAdapter adapter;

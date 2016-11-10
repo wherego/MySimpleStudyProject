@@ -15,7 +15,9 @@ import com.bianl.readingwhat.bean.movie.MovieSubject;
 import com.bianl.readingwhat.bean.movie.Staff;
 import com.bianl.readingwhat.db.model.StaredMovie;
 import com.bianl.readingwhat.db.util.StaredMovieUtil;
+import com.bianl.readingwhat.rx.RxEvent;
 import com.bianl.readingwhat.util.AppUtil.CommonUtil;
+import com.bianl.readingwhat.util.L;
 import com.bianl.readingwhat.util.glide.GlideUtil;
 import com.bianl.readingwhat.view.NestedGridView;
 
@@ -118,4 +120,8 @@ public class MovieDetailAty extends BaseActivity<MovieDetailPresent, MovieDetail
         activity.startActivity(intent);
     }
 
+    @Override
+    protected void handleMessage(RxEvent rxEvent) {
+        L.d(this.getLocalClassName()+" receiver:"+rxEvent);
+    }
 }

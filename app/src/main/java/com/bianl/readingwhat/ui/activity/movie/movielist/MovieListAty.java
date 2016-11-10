@@ -5,10 +5,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,7 +19,6 @@ import com.bianl.readingwhat.adapter.movie.MovieListAdapter;
 import com.bianl.readingwhat.base.BaseActivity;
 import com.bianl.readingwhat.bean.MovieBaseList;
 import com.bianl.readingwhat.bean.movie.MovieSubject;
-import com.bianl.readingwhat.rx.RxBus;
 import com.bianl.readingwhat.ui.activity.movie.moviedetail.MovieDetailAty;
 import com.bianl.readingwhat.ui.activity.movie.moviestared.MovieLikedAty;
 import com.bianl.readingwhat.ui.activity.setting.AppInfoListAty;
@@ -48,8 +45,6 @@ public class MovieListAty extends BaseActivity<MovieListPrensent, MovieListModel
     }
 
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.home_list)
     ListView mList;
     @BindView(R.id.home_tabLayout)
@@ -59,20 +54,9 @@ public class MovieListAty extends BaseActivity<MovieListPrensent, MovieListModel
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void initView() {
-        toolBarSetting();
         mTab.addOnTabSelectedListener(this);
         TabLayout.Tab tabAt = mTab.getTabAt(0);
         onTabSelected(tabAt);
-    }
-
-    private void toolBarSetting() {
-        toolbar.setTitle("ReadingWhat");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            toolbar.setBackground(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
-        }
-        toolbar.setSubtitle("a study demo");
-        setSupportActionBar(toolbar);
-        toolbar.setOnMenuItemClickListener(this);
     }
 
     @Override
@@ -90,12 +74,10 @@ public class MovieListAty extends BaseActivity<MovieListPrensent, MovieListModel
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         int itemId = item.getItemId();
-        L.d("OnClick");
         if (itemId == R.id.action_openAppInfo) {
-            L.d("OnClick");
             AppInfoListAty.startAppInfoAty(MovieListAty.this);
             return true;
-        }else if(itemId==R.id.action_staredMovie){
+        } else if (itemId == R.id.action_staredMovie) {
             MovieLikedAty.startMovieLikeAty(this);
             return true;
         }
@@ -150,11 +132,12 @@ public class MovieListAty extends BaseActivity<MovieListPrensent, MovieListModel
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         MovieSubject item = adapter.getItem(i);
-        MovieDetailAty.startMovieDetailAty(this,item.getId());
+        MovieDetailAty.startMovieDetailAty(this, item.getId());
     }
 
     @Override
-    protected void handleMessage(RxBus.RxEvent rxEvent) {
-        Log.d("enumTAG",rxEvent.toString());
+    protected void onResume() {
+        super.onResume();
     }
+
 }
