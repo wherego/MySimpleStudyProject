@@ -135,9 +135,4 @@ public class MovieListAty extends BaseActivity<MovieListPrensent, MovieListModel
         MovieDetailAty.startMovieDetailAty(this, item.getId());
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
 }

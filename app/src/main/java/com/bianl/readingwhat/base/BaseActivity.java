@@ -44,6 +44,7 @@ public abstract class BaseActivity<P extends BasePrensenter, M extends BaseModel
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(bindLayoutId());
+        AppManager.getInstance().addActivity(this);
         ButterKnife.bind(this);
 
         mPrensenter = TypeUtil.getT(this, 0);
@@ -106,6 +107,7 @@ public abstract class BaseActivity<P extends BasePrensenter, M extends BaseModel
     @Override
     protected void onDestroy() {
         hideProgress();
+        AppManager.getInstance().removeActivity(this);
         super.onDestroy();
     }
 
