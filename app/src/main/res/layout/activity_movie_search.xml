@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        style="@style/HorizontalLine"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:id="@+id/movie_search_et"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:imeOptions="actionSearch"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:drawablePadding="10dp"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:hint="Search your key here" />
+
+    <View style="@style/HorizontalLine" />
+
+    <ListView
+        android:id="@+id/movie_search_listView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0.5dp" />
+</LinearLayout>

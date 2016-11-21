@@ -27,4 +27,7 @@ public interface request {
 
     @GET("v2/movie/subject/{movieSubjectId}")
     Observable<MovieSubject> getMovieDetail(@Path("movieSubjectId") String movieSubjectId);
+
+    @GET("v2/movie/search?q={text}")
+    Observable<MovieBaseList> searchMovie(@Path("text") String text);
 }
